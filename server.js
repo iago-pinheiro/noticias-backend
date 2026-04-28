@@ -70,6 +70,12 @@ app.post("/noticias", (req, res) => {
   res.status(201).json({ mensagem: "Notícia criada", noticia: novaNoticia });
 });
 
+// GET: listar categorias únicas
+app.get("/categorias", (req, res) => {
+  const categorias = [...new Set(noticias.map(n => n.categoria))];
+  res.json({ categorias });
+});
+
 // Health check
 app.get("/", (req, res) => {
   res.json({
